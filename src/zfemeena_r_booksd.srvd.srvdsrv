@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition'
+define service ZFEMEENA_R_BOOKSD {
+  expose ZFEMEENA_R_BOOK as Book;
+}
