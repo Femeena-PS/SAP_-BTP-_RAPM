@@ -15,7 +15,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_ats_fm_data_uplaoder IMPLEMENTATION.
+CLASS ZCL_ATS_FM_DATA_UPLAODER IMPLEMENTATION.
 
 
   METHOD fill_master_data.
@@ -162,6 +162,7 @@ CLASS zcl_ats_fm_data_uplaoder IMPLEMENTATION.
      insert zats_fm_product from table @lt_prod.
   ENDMETHOD.
 
+
   METHOD fill_transaction_data.
     data : o_rand type REF TO cl_abap_random_int,
            n type i,
@@ -209,7 +210,8 @@ CLASS zcl_ats_fm_data_uplaoder IMPLEMENTATION.
                 qty =  n
                 uom = 'EA'
                 amount =  n * ls_prod-price
-                currency = ls_prod-currency
+                currency =  'USD'
+                    ""ls_prod-currency
          ) to lt_so_i.
 
         enddo.
@@ -220,9 +222,11 @@ CLASS zcl_ats_fm_data_uplaoder IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD flush.
     delete from : zats_fm_bpa, zats_fm_product, zats_fm_so_hdr, zats_fm_so_item.
   ENDMETHOD.
+
 
   METHOD if_oo_adt_classrun~main.
     me->flush( ).
@@ -236,5 +240,4 @@ CLASS zcl_ats_fm_data_uplaoder IMPLEMENTATION.
 *        output =
     ).
   ENDMETHOD.
-
 ENDCLASS.
