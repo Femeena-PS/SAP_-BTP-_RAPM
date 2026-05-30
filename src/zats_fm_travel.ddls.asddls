@@ -18,8 +18,17 @@ association of one to one /DMO/I_Overall_Status_VH as _OverallStatus on
    key travel_id as TravelId,
    agency_id as AgencyId,
    @ObjectModel.text.element: [ 'AgencyName' ]
+   @Consumption.valueHelpDefinition: [{
+   entity : {
+         name: '/DMO/I_Agency',
+         element: 'AgencyID' } }]
+         
    _Agency.Name as AgencyName,
    @ObjectModel.text.element: [ 'Customername' ]
+   @Consumption.valueHelpDefinition: [{
+   entity : {
+         name: '/DMO/I_Customer',
+         element: 'CustomerID' } }]
    customer_id as CustomerId,
    concat(concat(_Customer.FirstName, ' ') , _Customer.LastName) as Customername,
    begin_date as BeginDate,
@@ -28,9 +37,17 @@ association of one to one /DMO/I_Overall_Status_VH as _OverallStatus on
    booking_fee as BookingFee,
    @Semantics.amount.currencyCode: 'CurrencyCode'
    total_price as TotalPrice,
+   @Consumption.valueHelpDefinition: [{
+   entity : {
+         name: 'I_Currency',
+         element: 'Currency' } }]
    currency_code as CurrencyCode,
    description as Description,
    @ObjectModel.text.element: [ 'StatusText' ]
+    @Consumption.valueHelpDefinition: [{
+   entity : {
+         name: '/DMO/I_Overall_Status_VH',
+         element: 'OverallStatus' } }]
    overall_status as OverallStatus,
     case overall_status
     when 'O' then 2
